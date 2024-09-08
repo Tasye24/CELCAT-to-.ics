@@ -7,9 +7,15 @@
 // @updateURL    https://raw.githubusercontent.com/kotomax24/CELCAT-to-.ics/main/base.js
 // @downloadURL  https://raw.githubusercontent.com/kotomax24/CELCAT-to-.ics/main/base.js
 // @author       Kotomax24
-// @match        https://edt.univ-tlse3.fr/calendar2/*
+// @match        
 // @grant
 // ==/UserScript==
+
+// Change @match to your website calendar
+// Chande this variable by finding the depot on the website calls (when you change calendar)
+const url = "https://YOUR_WEBSITE.DOMAIN"; // your url HERE
+
+const CALENDAR = url+"/calendar/Home/GetCalendarData";
 
 /**
  * conver a json object to a HTML element
@@ -404,7 +410,7 @@ async function getData(startDate, endDate) {
 		})
 	}
 
-	const result = await fetch("https://edt.univ-tlse3.fr/calendar2/Home/GetCalendarData", params)
+	const result = await fetch(CALENDAR, params)
 	return result.json()
 }
 
