@@ -7,9 +7,15 @@
 // @updateURL    https://raw.githubusercontent.com/kotomax24/CELCAT-to-.ics/main/base.js
 // @downloadURL  https://raw.githubusercontent.com/kotomax24/CELCAT-to-.ics/main/base.js
 // @author       Kotomax24
-// @match        https://edt.univ-tlse3.fr/calendar2/*
+// @match        
 // @grant
 // ==/UserScript==
+
+// Change @match to your website calendar
+// Chande this variable by finding the depot on the website calls (when you change calendar)
+const url = "https://YOUR_WEBSITE.DOMAIN"; // your url HERE
+
+const CALENDAR = url+"/calendar/Home/GetCalendarData";
 
 /**
  * conver a json object to a HTML element
@@ -404,7 +410,7 @@ async function getData(startDate, endDate) {
 		})
 	}
 
-	const result = await fetch("https://edt.univ-tlse3.fr/calendar2/Home/GetCalendarData", params)
+	const result = await fetch(CALENDAR, params)
 	return result.json()
 }
 
@@ -459,16 +465,19 @@ function dataToIcal(data) {
     for (const event of data) {
         if (event.eventCategory == "CONGES" || event.eventCategory == "FERIE" || event.eventCategory == "PONT") continue
         event.description = cleanDescription(event.description)
+
+        debugger
         const details = parseDescription(event.description)
-        const categoryColor = getCategoryColor(event.eventCategory);
+
+        const categoryColor = getCategoryColor(event.type || event.eventCategory);
         result += "BEGIN:VEVENT\r\n"
         result += `UID:${event.id}\r\n`
         result += dstamp
         result += `DTSTART:${formatDate(event.start)} \r\n`
         result += `DTEND:${formatDate(event.end)} \r\n`
-        result += `SUMMARY:${details.course || 'Undefined Event'} \r\n`
+        result += `SUMMARY:${details.course || details.room || 'Undefined Event'} \r\n`
         result += `DESCRIPTION:${event.description.replace(/\n/g,"\\n")}\r`
-        result += `LOCATION:${details.room} \r\n`
+        result += `LOCATION:${details.group  || details.room} \r\n`
         result += `CATEGORIES:${event.eventCategory} \r\n`
         result += `COLOR:${categoryColor}\r\n`;
         result += "END:VEVENT\r\n"
@@ -477,16 +486,18 @@ function dataToIcal(data) {
     return result
 }
 
+
+// Change based on your colors
 function getCategoryColor(category) {
     switch (category) {
         case "COURS":
-            return "#8080ff";
+            return "ff0000";
         case "TD":
-            return "#ff8080";
+            return "4a4aff";
         case "TP":
             return "#408080";
         case "REUNION / RENCONTRE":
-            return "#ffff80";
+            return "a953ff";
         case "CONTROLE CONTINU":
             return "#808000";
         default:
