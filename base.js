@@ -13,9 +13,9 @@
 
 // Change @match to your website calendar
 // Chande this variable by finding the depot on the website calls (when you change calendar)
-const url = "https://YOUR_WEBSITE.DOMAIN"; // your url HERE
+let CALENDAR_url = "https://YOUR_WEBSITE.DOMAIN"; // your url HERE
 
-const CALENDAR = url+"/calendar/Home/GetCalendarData";
+const CALENDAR = CALENDAR_url+"/calendar/Home/GetCalendarData";
 
 /**
  * conver a json object to a HTML element
