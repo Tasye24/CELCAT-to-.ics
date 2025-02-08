@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name         CELCAT to .ics
 // @namespace    http://tampermonkey.net/
-// @version      1.2
-// @description  This is a custom browser script that converts CELCAT calendar data into iCalendar (.ics) format that can be exported and used in other schedule management applications.
-// @homepageURL  https://github.com/kotomax24/CELCAT-to-.ics
-// @updateURL    https://raw.githubusercontent.com/kotomax24/CELCAT-to-.ics/main/base.js
-// @downloadURL  https://raw.githubusercontent.com/kotomax24/CELCAT-to-.ics/main/base.js
-// @author       Kotomax24
-// @match        
+// @version      1.3
+// @description  This is a custom browser script that converts CELCAT calendar data into iCalendar (.ics) format that can be exported and used in other schedule management applications. based on kokomax24
+// @homepageURL  https://github.com/tasye24/CELCAT-to-.ics
+// @updateURL    https://raw.githubusercontent.com/tasye24/CELCAT-to-.ics/main/base.js
+// @downloadURL  https://raw.githubusercontent.com/tasye24/CELCAT-to-.ics/main/base.js
+// @author       kokomax24, tasye24
+// @match        your website here
 // @grant
 // ==/UserScript==
 
